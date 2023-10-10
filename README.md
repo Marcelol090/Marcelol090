@@ -1,7 +1,7 @@
 ## Olá, eu sou o Marcelo !
 <div align="center">
   <a href="https://github.com/Marcelol090
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Marcelol090)](https://github.com/anuraghazra/github-readme-stats" />
+  <img height="180em" src="(https://github-readme-stats.vercel.app/api?username=Marcelol090)](https://github.com/anuraghazra/github-readme-stats") />
   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Marcelol090&layout=compact&langs_count=7&theme=dark"/> 
 </div>
 <div style="display: inline_block"><br>
