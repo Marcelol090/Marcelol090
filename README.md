@@ -1,8 +1,7 @@
 ## Olá, eu sou o Marcelo !
 <div align="center">
   <a href="https://github.com/Marcelol090
-    [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Marcelol090)](https://github.com/anuraghazra/github-readme-stats)
-   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Marcelol090&show_icons=true&theme=dark&include_all_commits=true&count_private=true"/>
+  <img height="180em" src="https://camo.githubusercontent.com/4aef48012a92576e94a759a62e9c2c2eb7ee4d412157abf5db885673da12dc46/68747470733a2f2f6769746875622d726561646d652d73746174732e76657263656c2e6170702f6170693f757365726e616d653d466c6176696f2d4a532673686f775f69636f6e733d74727565267468656d653d6461726b26696e636c7564655f616c6c5f636f6d6d6974733d7472756526636f756e745f707269766174653d74727565" data-canonical-src="https://github-readme-stats.vercel.app/api?username=Marcelol090&amp;show_icons=true&amp;theme=dark&amp;include_all_commits=true&amp;count_private=true" style="max-width: 100%;">
   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Marcelol090&layout=compact&langs_count=7&theme=dark"/> 
 </div>
 <div style="display: inline_block"><br>
