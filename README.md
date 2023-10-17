@@ -3,7 +3,7 @@
   <a href="https://github.com/Marcelol090"></a>
   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Marcelol090&layout=compact&langs_count=7&theme=dark"/> 
 </div>
-    ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Marcelol090&show_icons=true&theme=transparent).
+    ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Marcelol090&show_icons=true&theme=transparent)
 <div style="display: inline_block">
   <br>
   <img align="center" alt="MARCELO-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"/>
