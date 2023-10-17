@@ -1,7 +1,8 @@
 ## Olá eu sou o Marcelo!
 <div align="center">
-  <a href="https://github.com/Marcelol090"></a>
+  <a href="https://github.com/Marcelol090">
   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Marcelol090&layout=compact&langs_count=7&theme=dark"/> 
+    </a>
 </div>
 <div style="display: inline_block">
   <br>
@@ -16,7 +17,6 @@
 </div>
   
   ##
- ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Marcelol090&show_icons=true&theme=transparent)
 
 <div> 
   <a href="https://www.instagram.com/marcelol090/" target="_blank"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
