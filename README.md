@@ -1,9 +1,10 @@
 ## Olá eu sou o Marcelo!
 <div align="center">
+ 
   <a href="https://github.com/Marcelol090">
-    [![GitHub Streak](http://github-readme-streak-stats.herokuapp.com?user=Marcelol090&theme=transparent&hide_border=true&card_width=1000)](https://git.io/streak-stats)
     <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Marcelol090&layout=compact&langs_count=7&theme=dark"/> 
    <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Marcelol090&show_icons=true&theme=dark&include_all_commits=true&count_private=true"/>
+    <img height="180em" src="http://github-readme-streak-stats.herokuapp.com?user=Marcelol090&theme=transparent&hide_border=true&card_width=1000"/>
     </a>
 </div>
 <div style="display: inline_block">
