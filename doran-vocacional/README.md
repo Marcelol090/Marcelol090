@@ -1,29 +1,41 @@
-# Doran OP v3
+# Doran OP 2.0
 
-Aplicação de exploração vocacional e apoio à Orientação Profissional e de Carreira.
+Frontend e backend unificados na Vercel.
 
-## O que esta versão acrescenta
+## Stack
 
-- 30 itens da adaptação brasileira do O*NET Interest Profiler Short Form.
-- Valores de trabalho e contexto separados do escore psicométrico.
-- 56 cursos técnicos e profissionalizantes organizados por eixos tecnológicos.
-- Comparação de até quatro cursos.
-- Aderência relativa calculada apenas entre os cursos comparados.
-- Relatório estruturado para análise assistida por LLM.
-- Exportação JSON para modelos de linguagem.
-- Exigência de evidências favoráveis, contradições, incerteza, dados ausentes e microexperimentos.
+- React
+- Vite
+- Tailwind CSS 4 via `@tailwindcss/vite`
+- estrutura shadcn/ui no modelo copy-and-own
+- Motion for React
+- Lucide icons
+- Google Gen AI SDK
+- Vercel Functions
 
-## Limites
+## Desenvolvimento
 
-A aplicação não gera diagnóstico, laudo ou parecer psicológico e não substitui psicóloga ou psicólogo. As probabilidades exibidas são probabilidades relativas de aderência dentro do conjunto de cursos comparados, e não chance de sucesso, empregabilidade ou satisfação futura.
+```bash
+npm install
+npm run dev
+```
 
-## Fontes principais
+## Produção
 
-- Teixeira & Castillo (2020), adaptação brasileira do O*NET Interest Profiler.
-- O*NET Interest Profiler e O*NET Database.
-- Catálogo Nacional de Cursos Técnicos do MEC.
-- Guia Pronatec de Cursos FIC.
-- Social Cognitive Career Theory.
-- Literatura internacional sobre interesses vocacionais e congruência pessoa-ambiente.
+```bash
+npm run build
+```
 
-Abra `index.html` diretamente no navegador. O site funciona sem backend e mantém dados no `localStorage`.
+Variável obrigatória na Vercel:
+
+```env
+GEMINI_API_KEY=...
+```
+
+## Limite metodológico
+
+A aplicação é uma ferramenta educacional e de exploração de carreira. Ela não produz avaliação psicológica, diagnóstico, laudo ou parecer profissional. Os percentuais dos cursos são aderências relativas dentro do conjunto comparado.
+
+## Fonte visual
+
+Leia `design-system/MASTER.md` antes de alterar aparência ou interação. Regras específicas de página ficam em `design-system/pages/`.

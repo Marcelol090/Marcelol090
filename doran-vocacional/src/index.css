@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "Manrope Variable", "Segoe UI Variable", "Segoe UI", sans-serif;
+  --font-display: "Newsreader Variable", Georgia, serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-surface: var(--surface);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-warm: var(--warm);
+  --color-success: var(--success);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+}
+
+:root {
+  color-scheme: dark;
+  --background: #08111b;
+  --foreground: #e9eff4;
+  --card: #0e1a27;
+  --card-foreground: #e9eff4;
+  --surface: #0b1621;
+  --primary: #a4bed3;
+  --primary-foreground: #07111a;
+  --secondary: #142333;
+  --secondary-foreground: #e7edf2;
+  --muted: #1b2a39;
+  --muted-foreground: #9aa8b5;
+  --border: #273a4b;
+  --border-strong: #3b5265;
+  --input: #0a1520;
+  --ring: #9fb9cf;
+  --warm: #c6b99e;
+  --success: #91b6a7;
+  --destructive: #a96767;
+  --destructive-foreground: #f2d9d9;
+}
+
+* { border-color: var(--border); }
+html { background: var(--background); scroll-behavior: smooth; }
+body {
+  min-width: 320px;
+  margin: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.012), transparent 25rem), var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01" 1, "cv02" 1, "cv03" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+button, a, input, select, textarea { touch-action: manipulation; }
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: rgba(164,190,211,.28); color: #fff; }
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 1000;
+  transform: translateY(-160%);
+  border: 1px solid var(--border-strong);
+  border-radius: .75rem;
+  background: var(--foreground);
+  color: var(--background);
+  padding: .75rem 1rem;
+  font-size: .875rem;
+  font-weight: 700;
+  transition: transform 160ms ease-out;
+}
+.skip-link:focus { transform: translateY(0); }
+.hero-grid {
+  background-image: linear-gradient(rgba(95,119,139,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(95,119,139,.08) 1px, transparent 1px), url("/topography.svg");
+  background-position: center;
+  background-size: 80px 80px, 80px 80px, 640px 640px;
+  mask-image: linear-gradient(to bottom, black 18%, transparent 96%);
+}
+.font-display { font-family: var(--font-display); }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border-width: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+@media print {
+  header, footer, button, .skip-link { display: none !important; }
+  body, #root, main { background: white !important; color: #111827 !important; }
+  main { max-width: none !important; padding: 0 !important; }
+  [class*="border-"] { border-color: #d1d5db !important; }
+}
