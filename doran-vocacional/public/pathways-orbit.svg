@@ -1,0 +1,16 @@
+<svg width="720" height="720" viewBox="0 0 720 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="116" y1="62" x2="614" y2="664" gradientUnits="userSpaceOnUse"><stop stop-color="#152535"/><stop offset="1" stop-color="#0A141F"/></linearGradient>
+    <linearGradient id="route" x1="202" y1="170" x2="514" y2="558" gradientUnits="userSpaceOnUse"><stop stop-color="#C7D6E2"/><stop offset="1" stop-color="#7590A7"/></linearGradient>
+    <filter id="shadow" x="104" y="104" width="512" height="512" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="28" stdDeviation="36" flood-color="#000000" flood-opacity="0.42"/></filter>
+  </defs>
+  <rect x="24" y="24" width="672" height="672" rx="56" fill="url(#bg)" stroke="#2C4052"/>
+  <g opacity="0.55"><path d="M72 210C160 128 271 92 376 111C486 130 572 203 646 293" stroke="#2A3E50"/><path d="M67 268C170 177 292 143 405 169C513 194 590 276 650 373" stroke="#263A4A"/><path d="M75 451C186 527 302 562 414 542C518 524 592 456 646 364" stroke="#263A4A"/><path d="M91 508C203 586 329 616 444 584C538 558 601 493 644 414" stroke="#2A3E50"/></g>
+  <g filter="url(#shadow)"><circle cx="360" cy="360" r="205" fill="#0E1A27" stroke="#314759" stroke-width="2"/><circle cx="360" cy="360" r="152" stroke="#2B3E4F"/><circle cx="360" cy="360" r="98" stroke="#2B3E4F"/></g>
+  <path d="M194 264C252 219 311 214 358 249C398 278 409 330 447 357C480 381 522 379 554 366" stroke="url(#route)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M205 446C258 407 296 386 338 393C380 400 407 443 446 459C482 474 516 467 545 442" stroke="#71869A" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 12"/>
+  <path d="M360 257V463" stroke="#33495B" stroke-width="2"/><path d="M263 313L457 407" stroke="#33495B" stroke-width="2"/><path d="M263 407L457 313" stroke="#33495B" stroke-width="2"/>
+  <g><circle cx="360" cy="360" r="50" fill="#122333" stroke="#A9BFCE" stroke-width="2"/><path d="M337 384V337.5C337 333.358 340.358 330 344.5 330H361C375.359 330 387 341.641 387 356C387 370.359 375.359 382 361 382H337Z" stroke="#D9E5ED" stroke-width="4" stroke-linejoin="round"/><path d="M349 373C357 362 365 355 379 349" stroke="#94ADC2" stroke-width="4" stroke-linecap="round"/></g>
+  <g font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle"><g><circle cx="360" cy="160" r="27" fill="#142434" stroke="#52697C"/><text x="360" y="167" fill="#D9E4ED">R</text></g><g><circle cx="533" cy="260" r="27" fill="#142434" stroke="#52697C"/><text x="533" y="267" fill="#D9E4ED">I</text></g><g><circle cx="533" cy="460" r="27" fill="#142434" stroke="#52697C"/><text x="533" y="467" fill="#D9E4ED">A</text></g><g><circle cx="360" cy="560" r="27" fill="#142434" stroke="#52697C"/><text x="360" y="567" fill="#D9E4ED">S</text></g><g><circle cx="187" cy="460" r="27" fill="#142434" stroke="#52697C"/><text x="187" y="467" fill="#D9E4ED">E</text></g><g><circle cx="187" cy="260" r="27" fill="#142434" stroke="#52697C"/><text x="187" y="267" fill="#D9E4ED">C</text></g></g>
+  <circle cx="194" cy="264" r="8" fill="#C5B99F"/><circle cx="554" cy="366" r="8" fill="#A7BDCD"/><circle cx="338" cy="393" r="7" fill="#7C91A4"/>
+</svg>
