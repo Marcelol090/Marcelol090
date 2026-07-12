@@ -1,0 +1,62 @@
+name: Expand and validate Doran OP v4
+
+on:
+  push:
+    branches:
+      - agent/doran-op-v4-deploy
+
+permissions:
+  contents: write
+
+concurrency:
+  group: doran-op-v4-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  expand:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout deployment branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: agent/doran-op-v4-deploy
+
+      - name: Reconstruct and verify package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .doran-bootstrap/part* | base64 --decode > /tmp/doran-op-v4.tar.xz
+          echo "01a29ccb92d74f85bc37b3f05bd1e4c0db9d0341968f4a2e20daba27f588b69b  /tmp/doran-op-v4.tar.xz" | sha256sum --check --strict
+          xz --test /tmp/doran-op-v4.tar.xz
+
+      - name: Replace repository tree with validated Doran source
+        shell: bash
+        run: |
+          set -euo pipefail
+          find . -mindepth 1 -maxdepth 1 \
+            ! -name .git \
+            ! -name .github \
+            ! -name .doran-bootstrap \
+            -exec rm -rf {} +
+          tar -xJf /tmp/doran-op-v4.tar.xz -C .
+          rm -rf .doran-bootstrap
+
+      - name: Install and validate
+        run: |
+          npm ci
+          npm run check
+
+      - name: Commit validated source tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/expand-doran-v4.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy Doran OP v4"
+          git push origin HEAD:agent/doran-op-v4-deploy
