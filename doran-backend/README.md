@@ -1,28 +1,15 @@
-# Doran OP Backend
+# Doran backend legado
 
-Backend serverless auditável para o Doran OP.
+O backend não é mais publicado como projeto separado.
 
-## Rotas
+A função de produção está em `../doran-vocacional/api/report.mjs` e é implantada junto com o frontend no mesmo projeto Vercel `doran-vocacional`.
 
-- `GET /api/health`
-- `GET /api/courses?axis=&q=`
-- `POST /api/score`
-- `POST /api/reports/ai`
-- `POST /api/assessments`
-- `GET /api/assessments/:id?token=`
-- `DELETE /api/assessments/:id?token=`
+## Motivo da consolidação
 
-## Princípios
+- chamadas same-origin em `/api/report`;
+- eliminação de CORS entre dois projetos;
+- frontend e contrato da API versionados no mesmo commit;
+- apenas uma configuração de ambiente para Gemini;
+- menor risco de publicar frontend e backend incompatíveis.
 
-- O cálculo RIASEC e o ranking de cursos são determinísticos.
-- A LLM só ajusta o fit de cada candidato entre -0,10 e +0,10; o servidor recalcula as probabilidades.
-- Percentuais representam aderência relativa entre cursos comparados, não chance de sucesso, emprego ou satisfação.
-- Persistência exige consentimento explícito e `DATABASE_URL`.
-- A IA é rotulada como assistente de orientação profissional, nunca psicóloga.
-
-## Variáveis opcionais
-
-- `DORAN_ALLOWED_ORIGIN`
-- `DORAN_AI_MODEL` (padrão `openai/gpt-5.4`)
-- `AI_GATEWAY_API_KEY` ou OIDC da Vercel
-- `DATABASE_URL` para Neon Postgres
+Esta pasta permanece apenas como referência histórica. Não deve receber um segundo deploy.

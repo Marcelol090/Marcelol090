@@ -59,50 +59,27 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: .22;
+  background-image: radial-gradient(circle at 20% 0%, rgba(164,190,211,.11), transparent 30rem), radial-gradient(circle at 88% 22%, rgba(198,185,158,.07), transparent 26rem);
+}
 button, a, input, select, textarea { touch-action: manipulation; }
 button, a { -webkit-tap-highlight-color: transparent; }
 ::selection { background: rgba(164,190,211,.28); color: #fff; }
-.skip-link {
-  position: fixed;
-  left: 1rem;
-  top: 1rem;
-  z-index: 1000;
-  transform: translateY(-160%);
-  border: 1px solid var(--border-strong);
-  border-radius: .75rem;
-  background: var(--foreground);
-  color: var(--background);
-  padding: .75rem 1rem;
-  font-size: .875rem;
-  font-weight: 700;
-  transition: transform 160ms ease-out;
-}
+.skip-link { position: fixed; left: 1rem; top: 1rem; z-index: 1000; transform: translateY(-160%); border: 1px solid var(--border-strong); border-radius: .75rem; background: var(--foreground); color: var(--background); padding: .75rem 1rem; font-size: .875rem; font-weight: 700; transition: transform 160ms ease-out; }
 .skip-link:focus { transform: translateY(0); }
-.hero-grid {
-  background-image: linear-gradient(rgba(95,119,139,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(95,119,139,.08) 1px, transparent 1px), url("/topography.svg");
-  background-position: center;
-  background-size: 80px 80px, 80px 80px, 640px 640px;
-  mask-image: linear-gradient(to bottom, black 18%, transparent 96%);
-}
+.hero-grid { background-image: linear-gradient(rgba(95,119,139,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(95,119,139,.08) 1px, transparent 1px), url("/topography.svg"); background-position: center; background-size: 80px 80px, 80px 80px, 640px 640px; mask-image: linear-gradient(to bottom, black 18%, transparent 96%); }
 .font-display { font-family: var(--font-display); }
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border-width: 0;
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-}
-@media print {
-  header, footer, button, .skip-link { display: none !important; }
-  body, #root, main { background: white !important; color: #111827 !important; }
-  main { max-width: none !important; padding: 0 !important; }
-  [class*="border-"] { border-color: #d1d5db !important; }
-}
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+.ambient-orb { position: absolute; border-radius: 999px; filter: blur(90px); pointer-events: none; opacity: .22; }
+.ambient-orb-primary { width: 25rem; height: 25rem; right: -7rem; top: 6rem; background: rgba(164,190,211,.22); }
+.ambient-orb-warm { width: 18rem; height: 18rem; left: -8rem; bottom: 3rem; background: rgba(198,185,158,.13); }
+.section-grid { background-image: linear-gradient(rgba(95,119,139,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(95,119,139,.06) 1px, transparent 1px); background-size: 56px 56px; mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent); }
+@media (max-width: 640px) { .ambient-orb { opacity: .13; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+@media print { header, footer, button, .skip-link { display: none !important; } body, #root, main { background: white !important; color: #111827 !important; } main { max-width: none !important; padding: 0 !important; } [class*="border-"] { border-color: #d1d5db !important; } }
