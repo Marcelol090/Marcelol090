@@ -3,6 +3,8 @@ import { FileText, LockKeyhole } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AppHeader } from "@/components/app-header";
 import { Brand } from "@/components/brand";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { useApiHealth } from "@/hooks/use-api-health";
 import { useScreenNavigation } from "@/hooks/use-screen-navigation";
 import { QUESTIONS } from "@/lib/assessment";
 import { INITIAL_STATE, loadState, STORAGE_KEY } from "@/lib/state";
@@ -15,6 +17,7 @@ import { TestScreen } from "@/screens/test-screen";
 export default function App() {
   const [screen, navigate] = useScreenNavigation();
   const [state, setState] = useState(loadState);
+  const apiHealth = useApiHealth();
   const answeredCount = state.answers.filter(Number.isInteger).length;
   const completed = answeredCount === QUESTIONS.length;
 
@@ -38,10 +41,11 @@ export default function App() {
 
   return (
     <div className="min-h-dvh bg-background text-foreground">
-      <AppHeader screen={screen} navigate={navigate} completed={completed} />
+      <ScrollProgress />
+      <AppHeader screen={screen} navigate={navigate} completed={completed} apiHealth={apiHealth} />
       <AnimatePresence mode="wait" initial={false}>
         <div key={screen}>
-          {screen === "home" ? <HomeScreen navigate={navigate} answeredCount={answeredCount} /> : null}
+          {screen === "home" ? <HomeScreen navigate={navigate} answeredCount={answeredCount} apiHealth={apiHealth} /> : null}
           {screen === "test" ? <TestScreen state={state} setState={setState} navigate={navigate} /> : null}
           {screen === "context" ? <ContextScreen state={state} setState={setState} navigate={navigate} /> : null}
           {screen === "result" ? <ResultScreen state={state} navigate={navigate} reset={reset} /> : null}
