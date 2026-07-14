@@ -1,5 +1,7 @@
 const rawBaseUrl = import.meta.env.VITE_DORAN_API_URL || "";
 const API_BASE_URL = rawBaseUrl.replace(/\/+$/, "");
+const HEALTH_TIMEOUT_MS = 7000;
+const REPORT_TIMEOUT_MS = 52000;
 
 export function apiUrl(path) {
   const normalized = path.startsWith("/") ? path : `/${path}`;
@@ -13,6 +15,29 @@ function responseMessage(status, text) {
   if (status === 404) return "A rota da análise não foi encontrada. O frontend e o backend podem estar fora de sincronia.";
   if (status >= 400) return "A solicitação foi recusada pelo servidor.";
   return text || "A resposta do servidor não pôde ser interpretada.";
+}
+
+function requestSignal(externalSignal, timeoutMs) {
+  const controller = new AbortController();
+  let timedOut = false;
+
+  const abortFromExternal = () => controller.abort(externalSignal?.reason);
+  if (externalSignal?.aborted) abortFromExternal();
+  else externalSignal?.addEventListener("abort", abortFromExternal, { once: true });
+
+  const timeout = globalThis.setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, timeoutMs);
+
+  return {
+    signal: controller.signal,
+    didTimeout: () => timedOut,
+    cleanup() {
+      globalThis.clearTimeout(timeout);
+      externalSignal?.removeEventListener("abort", abortFromExternal);
+    },
+  };
 }
 
 export async function readApiResponse(response) {
@@ -52,27 +77,66 @@ export async function readApiResponse(response) {
   return payload;
 }
 
-export async function requestAIReport(dossier, signal) {
-  const response = await fetch(apiUrl("/api/report"), {
-    method: "POST",
-    headers: {
-      accept: "application/json",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({ consentToAI: true, dossier }),
-    signal,
-  });
-  return readApiResponse(response);
+async function request(path, options, externalSignal, timeoutMs) {
+  const controlled = requestSignal(externalSignal, timeoutMs);
+  try {
+    const response = await fetch(apiUrl(path), {
+      ...options,
+      signal: controlled.signal,
+    });
+    return await readApiResponse(response);
+  } catch (error) {
+    if (controlled.didTimeout()) {
+      const timeoutError = new Error(
+        path === "/api/report" && options?.method === "POST"
+          ? "A análise excedeu o limite operacional. Seu resultado local continua disponível."
+          : "A API demorou demais para responder.",
+      );
+      timeoutError.name = "TimeoutError";
+      timeoutError.details = { timeoutMs, path };
+      throw timeoutError;
+    }
+
+    if (error instanceof TypeError) {
+      const networkError = new Error("Não foi possível conectar ao servidor do Doran.");
+      networkError.name = "NetworkError";
+      networkError.details = { path, cause: error.message };
+      throw networkError;
+    }
+
+    throw error;
+  } finally {
+    controlled.cleanup();
+  }
 }
 
-export async function getApiHealth(signal) {
-  const response = await fetch(apiUrl("/api/report"), {
-    method: "GET",
-    headers: { accept: "application/json" },
-    cache: "no-store",
+export function requestAIReport(dossier, signal) {
+  return request(
+    "/api/report",
+    {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ consentToAI: true, dossier }),
+    },
     signal,
-  });
-  return readApiResponse(response);
+    REPORT_TIMEOUT_MS,
+  );
+}
+
+export function getApiHealth(signal) {
+  return request(
+    "/api/report",
+    {
+      method: "GET",
+      headers: { accept: "application/json" },
+      cache: "no-store",
+    },
+    signal,
+    HEALTH_TIMEOUT_MS,
+  );
 }
 
 export { API_BASE_URL };
