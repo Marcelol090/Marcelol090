@@ -1,17 +1,28 @@
 import { allow, errorStatus, read, sanitizeDossier, send } from "./_lib/http.mjs";
 import { finalize } from "./_lib/finalize.mjs";
-import { aiConfigured, analyze, FALLBACK, PRIMARY } from "./_lib/provider.mjs";
+import {
+  aiConfigured,
+  analyze,
+  ATTEMPT_TIMEOUT_MS,
+  FALLBACK,
+  PRIMARY,
+  TOTAL_TIMEOUT_MS,
+} from "./_lib/provider.mjs";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
     return send(res, 200, {
       ok: true,
       service: "doran-op-unified",
-      version: "5.1.0",
+      version: "5.1.1",
       apiMode: "generate-content-structured",
       primaryModel: PRIMARY,
       fallbackModel: FALLBACK,
       aiConfigured,
+      timeoutPolicy: {
+        attemptMs: ATTEMPT_TIMEOUT_MS,
+        totalMs: TOTAL_TIMEOUT_MS,
+      },
     });
   }
   if (req.method !== "POST") return send(res, 405, { error: "method_not_allowed" });
@@ -52,7 +63,7 @@ export default async function handler(req, res) {
       message:
         upstreamStatus === 429
           ? "A cota do Gemini foi atingida. Tente novamente após a renovação do limite."
-          : "O Gemini não conseguiu concluir a análise. O modelo de fallback também foi tentado.",
+          : "O Gemini não conseguiu concluir a análise dentro do limite operacional. O modelo de fallback também foi tentado.",
       upstreamStatus: upstreamStatus || undefined,
       attempts: error?.failures,
     });
