@@ -48,7 +48,9 @@ export default function App() {
           {screen === "home" ? <HomeScreen navigate={navigate} answeredCount={answeredCount} apiHealth={apiHealth} /> : null}
           {screen === "test" ? <TestScreen state={state} setState={setState} navigate={navigate} /> : null}
           {screen === "context" ? <ContextScreen state={state} setState={setState} navigate={navigate} /> : null}
-          {screen === "result" ? <ResultScreen state={state} navigate={navigate} reset={reset} /> : null}
+          {screen === "result" ? (
+            <ResultScreen state={state} navigate={navigate} reset={reset} apiHealth={apiHealth} />
+          ) : null}
           {screen === "method" ? <MethodScreen navigate={navigate} /> : null}
         </div>
       </AnimatePresence>
