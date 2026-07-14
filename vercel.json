@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "cd doran-vocacional && npm ci",
+  "installCommand": "cd doran-vocacional && npm install --no-audit --no-fund",
   "buildCommand": "cd doran-vocacional && npm run build",
   "outputDirectory": "doran-vocacional/dist",
   "functions": {
